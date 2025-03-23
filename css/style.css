@@ -1,0 +1,172 @@
+/* Animate the logo using keyframes (grow from 25px to 475px & fade in) */
+@keyframes grow {
+  from {
+    width: 25px;
+    opacity: 0;
+  }
+  to {
+    width: 475px;
+    opacity: 1;
+  }
+}
+
+/* Apply the keyframe animation to the logo */
+#logo {
+  animation: grow 5s;
+  width: 475px;
+}
+
+/* Set body font to Poppins (with serif fallback) and use concrete_seamless background with fallback color */
+body {
+  font-family: "Poppins", serif;
+  background-image: url("../images/concrete_seamless.png");
+  background-color: #f1f1f1;
+}
+
+/* Use flexbox for header layout in default view */
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Use flexbox for nav_links layout (default vertical alignment) */
+.nav_links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure links retain the same color after being visited */
+a:visited {
+  color: blue;
+}
+
+/* Style header elements that are direct children of .card (background, border, padding, border-radius) */
+.card > header {
+  background: #288088;
+  border: solid 2px #45adad;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 50px 50px 0px 0px;
+}
+
+/* Additional styling for .card (set border-radius) */
+.card {
+  border-radius: 50px 50px 0px 0px;
+}
+
+/* Set .card initial flex-basis for default view */
+.card {
+  flex-basis: 450px;
+}
+
+/* Use flex properties for the pricing section (center content horizontally) */
+.pricing {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+/* Style gallery images (border, margin, fixed width) */
+.gallery img {
+  border: solid 10px #50c7c7;
+  margin: 10px;
+  width: 300px;
+}
+
+/* Use flexbox for gallery layout */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* MEDIA QUERY for screens greater than 900px */
+/* Adjust header to a row layout with space-between for large screens */
+@media screen and (min-width: 900px) {
+  header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+  /* Change nav_links to horizontal layout for large screens */
+  .nav_links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Adjust .card flex-basis for large screens */
+  .card {
+    flex-basis: 275px;
+  }
+  /* Center pricing items vertically on large screens */
+  .pricing {
+    display: flex;
+    align-items: center;
+  }
+ 
+  /* Keep the top header fixed while scrolling (challenge) */
+  body > header {
+    position: fixed;
+    width: 100%;
+  }
+
+  /* Add padding to main to prevent content overlap with fixed header */
+  main {
+    padding-top: 6rem;
+  }
+}
+
+/* MEDIA QUERY for print view */
+/* For print, change body font to Arial/Helvetica and remove background image */
+@media print {
+  body {
+    font-family: Arial, Helvetica;
+    background-image: none;
+  }
+
+  /* Ensure nav spans full width in print view */
+  nav {
+    width: 100%;
+  }
+
+  /* Adjust nav_links for print with space-around alignment */
+  .nav_links {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  /* Align pricing items along the bottom for print view */
+  .pricing {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: end;
+  }
+
+  /* Set .card border and flex-basis for print view */
+  .card {
+    border: solid 2px #45ADDD;
+    flex-basis: 325;
+  }
+
+  /* Hide the gallery in print view */
+  .gallery, #gallery {
+    display: none;
+  }
+
+  /* Add thumbs up entity after the second list item in .card (challenge) */
+  .card li:nth-child(2)::after {
+    content: "👍";
+  }
+}
+
+/* MEDIA QUERY for users preferring reduced motion */
+/* Disable logo animation if user prefers reduced motion */
+@media all and (prefers-reduced-motion: reduce) {
+  #logo {
+    animation: none;
+  }
+}
